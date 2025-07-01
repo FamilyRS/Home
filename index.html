@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Family RS | تیم معاملاتی برای زندگی بهتر</title>
+    <style>
+        :root {
+            --primary-color: #6E48AA;
+            --secondary-color: #5D9CEC;
+            --accent-color: #FFD166;
+            --light-bg: #F5F7FA;
+            --white: #FFFFFF;
+            --text-color: #333333;
+        }
+        
+        body {
+            font-family: 'Poppins', 'Segoe UI', Tahoma, sans-serif;
+            background-color: var(--light-bg);
+            margin: 0;
+            padding: 0;
+            color: var(--text-color);
+            line-height: 1.8;
+        }
+        
+        /* هدر با گرادینت بنفش-آبی */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            text-align: center;
+            padding: 4rem 1rem;
+            box-shadow: 0 4px 20px rgba(110, 72, 170, 0.4);
+        }
+        
+        .logo {
+            font-size: 3rem;
+            margin: 0;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .tagline {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            margin-top: 0.8rem;
+            font-weight: 300;
+        }
+        
+        /* بخش‌های محتوا */
+        .content-section {
+            background-color: var(--white);
+            padding: 2.5rem;
+            margin: 3rem auto;
+            max-width: 900px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        }
+        
+        .intro-section {
+            background: linear-gradient(to right, var(--white), #F8F2FF);
+            border-right: 5px solid var(--secondary-color);
+            position: relative;
+        }
+        
+        .intro-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 8px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
+        }
+        
+        /* بخش مدیریت تیم */
+        .team-section {
+            background: linear-gradient(to right, var(--white), #F5F0FF);
+            padding: 2.5rem;
+            margin: 3rem auto;
+            max-width: 900px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            border-top: 4px solid var(--primary-color);
+        }
+        
+        .team-members {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .member-name {
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 1.3rem;
+            text-align: center;
+            padding: 1rem;
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            width: 200px;
+        }
+        
+        /* بخش کانال تلگرام */
+        .telegram-section {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin: 3rem auto;
+            max-width: 900px;
+            border-radius: 12px;
+        }
+        
+        .telegram-link {
+            display: inline-block;
+            background-color: white;
+            color: var(--primary-color);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: bold;
+            text-decoration: none;
+            margin-top: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .telegram-link:hover {
+            transform: scale(1.05);
+        }
+        
+        /* دکمه‌ها */
+        .btn {
+            background-color: var(--accent-color);
+            color: var(--text-color);
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 2rem;
+            display: inline-block;
+            box-shadow: 0 4px 8px rgba(255, 209, 102, 0.4);
+        }
+        
+        .btn:hover {
+            background-color: #FFC233;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(255, 194, 51, 0.5);
+        }
+        
+        .join-btn {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: white;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 1.5rem;
+            display: inline-block;
+            text-decoration: none;
+            box-shadow: 0 4px 8px rgba(93, 156, 236, 0.4);
+        }
+        
+        .join-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(93, 156, 236, 0.5);
+        }
+        
+        h2 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 1.8rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h2::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60%;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            border-radius: 4px;
+        }
+        
+        p {
+            font-size: 1.15rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .features-list {
+            padding-right: 1.5rem;
+        }
+        
+        .features-list p {
+            position: relative;
+            padding-right: 2rem;
+        }
+        
+        .features-list p::before {
+            content: "•";
+            color: var(--secondary-color);
+            font-size: 1.8rem;
+            position: absolute;
+            right: 0;
+            top: -0.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2.2rem;
+            }
+            
+            .tagline {
+                font-size: 1.1rem;
+            }
+            
+            .content-section, .team-section, .telegram-section {
+                padding: 1.8rem;
+                margin: 2rem 1rem;
+            }
+            
+            .member-name {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- هدر -->
+    <header>
+        <h1 class="logo">Family RS</h1>
+        <p class="tagline">زندگی بهتر از طریق معامله‌گری هوشمند</p>
+    </header>
+    
+    <!-- بخش هدف -->
+    <section class="content-section goal-section">
+        <h2>هدف ما</h2>
+        <p>ایجاد تحولی اساسی در کیفیت زندگی اعضای تیم از طریق معامله‌گری حرفه‌ای</p>
+        
+        <div class="features-list">
+            <p>ساخت درآمد پایدار و قابل پیش‌بینی از بازارهای مالی</p>
+            <p>توسعه مهارت‌های معامله‌گری به صورت عملی و کاربردی</p>
+            <p>دسترسی به تحلیل‌های دقیق و استراتژی‌های تست‌شده بازار</p>
+        </div>
+    </section>
+    
+    <!-- بخش مدیریت تیم -->
+    <section class="team-section">
+        <h2>اعضای اصلی تیم</h2>
+        
+        <div class="team-members">
+            <div class="member-name">Taha Ghasemi</div>
+            <div class="member-name">Kiarash GoliPour</div>
+            <div class="member-name">Kian Sattari</div>
+            <div class="member-name">Mehrad Yonsian</div>
+        </div>
+    </section>
+    
+    <!-- بخش معرفی تیم -->
+    <section class="content-section intro-section">
+        <h2>تیم  فمیلی RS چیست؟</h2>
+        <p>ما جمعی از معامله‌گران حرفه‌ای و مشتاق هستیم که باور داریم معامله‌گری می‌تواند زندگی‌ها را متحول کند. تیم ما با هدف ایجاد فرصت‌های مالی بی‌نظیر تشکیل شده است.</p>
+        
+        <p>در Family RS، معامله‌گری فقط یک مهارت نیست، بلکه راهی برای طراحی زندگی ایده‌آل است.</p>
+        
+        <a href="https://t.me/familyrs_support" class="join-btn">همین حالا به خانواده ما بپیوندید</a>
+    </section>
+    
+    <!-- بخش کانال تلگرام -->
+    <section class="telegram-section">
+        <h2 style="color: white;">کانال آموزشی ما در تلگرام</h2>
+        <p>برای دریافت آخرین تحلیل‌ها و سیگنال‌های معاملاتی به کانال ما بپیوندید</p>
+        <a href="https://t.me/tradetahaghasemi" class="telegram-link">@tradetahaghasemi</a>
+    </section>
+</body>
+</html>
