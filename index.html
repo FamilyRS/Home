@@ -1,8 +1,9 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="تیم معاملاتی Family RS - زندگی بهتر از طریق معامله‌گری حرفه‌ای. ارائه سیگنال‌های دقیق، آموزش‌های کاربردی و پشتیبانی 24 ساعته">
     <title>Family RS | تیم معاملاتی برای زندگی بهتر</title>
     <style>
         :root {
@@ -55,6 +56,11 @@
             max-width: 900px;
             border-radius: 12px;
             box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+        
+        .content-section:hover {
+            transform: translateY(-5px);
         }
         
         .intro-section {
@@ -102,6 +108,11 @@
             border-radius: 8px;
             box-shadow: 0 3px 10px rgba(0,0,0,0.1);
             width: 200px;
+            transition: transform 0.3s;
+        }
+        
+        .member-name:hover {
+            transform: scale(1.05);
         }
         
         /* بخش کانال تلگرام */
@@ -174,6 +185,22 @@
             box-shadow: 0 8px 16px rgba(93, 156, 236, 0.5);
         }
         
+        /* دکمه ثابت پایین صفحه */
+        .fixed-join-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: translateX(-50%) scale(1); }
+            50% { transform: translateX(-50%) scale(1.05); }
+            100% { transform: translateX(-50%) scale(1); }
+        }
+        
         h2 {
             color: var(--primary-color);
             font-size: 2rem;
@@ -216,22 +243,97 @@
             top: -0.5rem;
         }
         
+        /* بخش آمار و ارقام */
+        .stats-grid {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+            margin-top: 2rem;
+        }
+        
+        .stat-item {
+            padding: 1.5rem;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            color: var(--text-color);
+        }
+        
+        /* بخش سوالات متداول */
+        .faq-item {
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 1.5rem;
+        }
+        
+        .faq-question {
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+        }
+        
+        /* فرم تماس */
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .contact-form input,
+        .contact-form textarea {
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+        
+        .contact-form textarea {
+            min-height: 120px;
+        }
+        
         @media (max-width: 768px) {
             .logo {
-                font-size: 2.2rem;
+                font-size: 2.5rem;
             }
             
             .tagline {
-                font-size: 1.1rem;
+                font-size: 1.2rem;
             }
             
             .content-section, .team-section, .telegram-section {
-                padding: 1.8rem;
+                padding: 2rem;
                 margin: 2rem 1rem;
             }
             
             .member-name {
                 width: 100%;
+            }
+            
+            .stats-grid {
+                flex-direction: column;
+            }
+            
+            .stat-item {
+                padding: 1rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            p {
+                font-size: 1.1rem;
             }
         }
     </style>
@@ -252,6 +354,26 @@
             <p>ساخت درآمد پایدار و قابل پیش‌بینی از بازارهای مالی</p>
             <p>توسعه مهارت‌های معامله‌گری به صورت عملی و کاربردی</p>
             <p>دسترسی به تحلیل‌های دقیق و استراتژی‌های تست‌شده بازار</p>
+            <p>پشتیبانی 24 ساعته و پاسخگویی به تمام سوالات شما</p>
+        </div>
+    </section>
+    
+    <!-- بخش آمار و ارقام -->
+    <section class="content-section stats-section">
+        <h2>تیم ما در یک نگاه</h2>
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">+10</div>
+                <div class="stat-label">اعضای فعال</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">2+</div>
+                <div class="stat-label">سال تجربه</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">پشتیبانی</div>
+            </div>
         </div>
     </section>
     
@@ -269,19 +391,75 @@
     
     <!-- بخش معرفی تیم -->
     <section class="content-section intro-section">
-        <h2>تیم  فمیلی RS چیست؟</h2>
+        <h2>تیم فمیلی RS چیست؟</h2>
         <p>ما جمعی از معامله‌گران حرفه‌ای و مشتاق هستیم که باور داریم معامله‌گری می‌تواند زندگی‌ها را متحول کند. تیم ما با هدف ایجاد فرصت‌های مالی بی‌نظیر تشکیل شده است.</p>
         
-        <p>در Family RS، معامله‌گری فقط یک مهارت نیست، بلکه راهی برای طراحی زندگی ایده‌آل است.</p>
+        <p>در Family RS، معامله‌گری فقط یک مهارت نیست، بلکه راهی برای طراحی زندگی ایده‌آل است. ما با ترکیب دانش تخصصی و کار گروهی، به اعضای خود کمک می‌کنیم به استقلال مالی برسند.</p>
         
         <a href="https://t.me/familyrs_support" class="join-btn">همین حالا به خانواده ما بپیوندید</a>
+    </section>
+    
+    <!-- بخش سوالات متداول -->
+    <section class="content-section faq-section">
+        <h2>سوالات متداول</h2>
+        
+        <div class="faq-item">
+            <div class="faq-question">چگونه می‌توانم به تیم Family RS بپیوندم؟</div>
+            <p>از طریق دکمه عضویت در همین صفحه یا مراجعه به کانال تلگرام ما می‌توانید برای عضویت اقدام کنید. پس از ثبت نام، راهنمایی‌های لازم برای شما ارسال خواهد شد.</p>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">آیا برای شروع نیاز به سرمایه زیاد دارم؟</div>
+            <p>خیر، ما استراتژی‌هایی برای تمام سطوح سرمایه داریم. حتی می‌توانید با سرمایه‌های کوچک (از 10 میلیون تومان) شروع کنید.</p>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">آیا آموزش‌ها مناسب افراد مبتدی است؟</div>
+            <p>بله، آموزش‌های ما از سطح مقدماتی تا پیشرفته طراحی شده‌اند و برای تمام سطوح تجربه مناسب هستند.</p>
+        </div>
     </section>
     
     <!-- بخش کانال تلگرام -->
     <section class="telegram-section">
         <h2 style="color: white;">کانال آموزشی ما در تلگرام</h2>
-        <p>برای دریافت آخرین تحلیل‌ها و سیگنال‌های معاملاتی به کانال ما بپیوندید</p>
+        <p>برای دریافت آخرین تحلیل‌ها، سیگنال‌های معاملاتی و آموزش‌های تخصصی به کانال ما بپیوندید</p>
         <a href="https://t.me/tradetahaghasemi" class="telegram-link">@tradetahaghasemi</a>
     </section>
+    
+    <!-- بخش تماس با ما -->
+    <section class="content-section contact-section">
+        <h2>تماس با ما</h2>
+        <p>برای هرگونه سوال یا پیشنهاد می‌توانید از طریق فرم زیر با ما در ارتباط باشید:</p>
+        
+        <form class="contact-form">
+            <input type="text" placeholder="نام شما" required>
+            <input type="email" placeholder="ایمیل یا شماره تماس" required>
+            <textarea placeholder="پیام شما"></textarea>
+            <button type="submit" class="btn">ارسال پیام</button>
+        </form>
+    </section>
+    
+    <!-- دکمه ثابت عضویت -->
+    <a href="https://t.me/familyrs_support" class="join-btn fixed-join-btn">عضویت در تیم</a>
+    
+    <script>
+        // افزودن تعامل برای سوالات متداول
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                answer.style.display = answer.style.display === 'none' ? 'block' : 'none';
+            });
+        });
+        
+        // اسکرول نرم برای لینک‌ها
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
