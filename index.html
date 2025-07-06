@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
-<head>
+<html lang="fa" dir="rtl"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="تیم معاملاتی Family RS - زندگی بهتر از طریق معامله‌گری حرفه‌ای. ارائه سیگنال‌های دقیق، آموزش‌های کاربردی و پشتیبانی 24 ساعته">
     <title>Family RS | تیم معاملاتی برای زندگی بهتر</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         :root {
             --primary-color: #6E48AA;
@@ -34,6 +34,7 @@
             text-align: right;
         }
         
+        /* هدر و منوی ناوبری */
         header {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: var(--white);
@@ -75,36 +76,67 @@
             z-index: 1;
         }
         
-        .back-to-top {
-            position: fixed;
-            bottom: 80px;
-            left: 20px;
-            background-color: var(--primary-color);
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
+        /* منوی ناوبری */
+        .navbar {
+            position: sticky;
+            top: 0;
+            background-color: var(--white);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+        
+        .nav-container {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            z-index: 99;
-            opacity: 0;
-            visibility: hidden;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .nav-item {
+            margin-right: 1.5rem;
+        }
+        
+        .nav-link {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
             transition: var(--transition);
         }
         
-        .back-to-top.active {
-            opacity: 1;
-            visibility: visible;
+        .nav-link:hover {
+            color: var(--primary-color);
+            background-color: rgba(110, 72, 170, 0.1);
         }
         
-        .back-to-top:hover {
-            background-color: var(--secondary-color);
-            transform: translateY(-5px);
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            cursor: pointer;
         }
         
+        /* محتوای اصلی */
         .content-section {
             background-color: var(--white);
             padding: 2.5rem;
@@ -137,6 +169,7 @@
             background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
         }
         
+        /* بخش تیم */
         .team-section {
             background: linear-gradient(to right, var(--white), #F5F0FF);
             padding: 2.5rem;
@@ -182,6 +215,24 @@
             color: var(--secondary-color);
         }
         
+        .member-skill {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            justify-content: center;
+        }
+        
+        .skill-tag {
+            background-color: var(--light-bg);
+            color: var(--primary-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        /* بخش تلگرام */
         .telegram-section {
             background-color: var(--primary-color);
             color: white;
@@ -227,6 +278,7 @@
             background-color: #f0f0f0;
         }
         
+        /* دکمه‌ها */
         .btn {
             background-color: var(--accent-color);
             color: var(--text-color);
@@ -298,6 +350,7 @@
             100% { transform: translateX(50%) scale(1); }
         }
         
+        /* تایپوگرافی */
         h2 {
             color: var(--primary-color);
             font-size: 2rem;
@@ -322,6 +375,7 @@
             margin-bottom: 1.5rem;
         }
         
+        /* لیست ویژگی‌ها */
         .features-list {
             padding-right: 1.5rem;
         }
@@ -340,6 +394,7 @@
             top: -0.5rem;
         }
         
+        /* آمار و ارقام */
         .stats-grid {
             display: flex;
             justify-content: space-around;
@@ -377,6 +432,7 @@
             color: var(--text-color);
         }
         
+        /* سوالات متداول */
         .faq-item {
             margin-bottom: 1.5rem;
             border-bottom: 1px solid #eee;
@@ -422,6 +478,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
         
+        /* فرم تماس */
         .contact-form {
             display: flex;
             flex-direction: column;
@@ -480,6 +537,7 @@
             border: 1px solid var(--error-color);
         }
         
+        /* فوتر */
         footer {
             background-color: var(--primary-color);
             color: white;
@@ -512,7 +570,7 @@
             font-size: 0.9rem;
         }
         
-        /* استایل‌های جدید برای بخش‌های آموزشی */
+        /* بخش‌های آموزشی */
         .edu-card {
             background: var(--white);
             border-radius: var(--border-radius);
@@ -555,6 +613,7 @@
             top: -0.5rem;
         }
         
+        /* جداول بازار */
         .market-table {
             width: 100%;
             border-collapse: collapse;
@@ -581,6 +640,7 @@
             background-color: var(--light-bg);
         }
         
+        /* کارت‌های بازار */
         .market-cards {
             display: flex;
             flex-wrap: wrap;
@@ -616,6 +676,222 @@
             font-size: 1.3rem;
         }
         
+        /* بخش جدید: اسلایدر موفقیت‌ها */
+        .success-section {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+        }
+        
+        .success-slider {
+            display: flex;
+            gap: 2rem;
+            overflow-x: auto;
+            padding: 1rem 0;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none; /* برای فایرفاکس */
+        }
+        
+        .success-slider::-webkit-scrollbar {
+            display: none; /* برای کروم و سافاری */
+        }
+        
+        .slide {
+            scroll-snap-align: start;
+            flex: 0 0 90%;
+        }
+        
+        .success-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--box-shadow);
+            text-align: center;
+        }
+        
+        .success-badge {
+            background: var(--primary-color);
+            color: white;
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+        
+        .success-chart {
+            margin: 1rem auto;
+            max-width: 300px;
+            height: 200px;
+        }
+        
+        .slider-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .slider-controls button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .slider-controls button:hover {
+            background: var(--secondary-color);
+            transform: scale(1.1);
+        }
+        
+        /* بخش جدید: سطوح عضویت */
+        .membership-plans {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+        
+        .membership-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--box-shadow);
+            width: 280px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .membership-card.popular {
+            border: 2px solid var(--accent-color);
+            transform: scale(1.05);
+        }
+        
+        .membership-card.popular::before {
+            content: "پیشنهاد ویژه";
+            position: absolute;
+            top: 10px;
+            left: -30px;
+            background: var(--accent-color);
+            color: var(--text-color);
+            padding: 0.3rem 3rem;
+            transform: rotate(-45deg);
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .membership-title {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .membership-price {
+            font-size: 2rem;
+            font-weight: bold;
+            text-align: center;
+            margin: 1.5rem 0;
+        }
+        
+        .membership-features {
+            margin: 1.5rem 0;
+        }
+        
+        .membership-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.8rem;
+        }
+        
+        .membership-feature i {
+            color: var(--secondary-color);
+        }
+        
+        /* بخش جدید: بلاگ آموزشی */
+        .blog-posts {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .blog-card {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+        }
+        
+        .blog-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .blog-content {
+            padding: 1.5rem;
+        }
+        
+        .blog-title {
+            color: var(--primary-color);
+            margin-bottom: 0.8rem;
+        }
+        
+        .blog-excerpt {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        
+        .blog-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: #888;
+        }
+        
+        /* دکمه بازگشت به بالا */
+        .back-to-top {
+            position: fixed;
+            bottom: 80px;
+            left: 20px;
+            background-color: var(--primary-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            z-index: 99;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+        
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-5px);
+        }
+        
+        /* استایل‌های ریسپانسیو */
         @media (max-width: 768px) {
             .logo {
                 font-size: 2.5rem;
@@ -625,12 +901,36 @@
                 font-size: 1.2rem;
             }
             
+            .nav-menu {
+                display: none;
+                position: fixed;
+                top: 70px;
+                right: 0;
+                background: white;
+                width: 100%;
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            }
+            
+            .nav-menu.active {
+                display: flex;
+            }
+            
+            .nav-item {
+                margin: 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
             .content-section, .team-section, .telegram-section {
                 padding: 2rem 1.5rem;
                 margin: 2rem 1rem;
             }
             
-            .member-card, .market-card {
+            .member-card, .market-card, .membership-card {
                 width: 100%;
                 max-width: 250px;
             }
@@ -666,18 +966,45 @@
                 width: 40px;
                 height: 40px;
             }
+            
+            .membership-plans {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .membership-card.popular {
+                transform: none;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- منوی ناوبری -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">Family RS</a>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#about" class="nav-link">درباره ما</a></li>
+                <li class="nav-item"><a href="#education" class="nav-link">آموزش‌ها</a></li>
+                <li class="nav-item"><a href="#markets" class="nav-link">بازارها</a></li>
+                <li class="nav-item"><a href="#team" class="nav-link">تیم ما</a></li>
+                <li class="nav-item"><a href="#faq" class="nav-link">سوالات</a></li>
+                <li class="nav-item"><a href="#contact" class="nav-link">تماس</a></li>
+            </ul>
+        </div>
+    </nav>
+    
     <!-- هدر -->
-    <header>
+    <header id="home">
         <h1 class="logo">Family RS</h1>
         <p class="tagline">زندگی بهتر از طریق معامله‌گری هوشمند</p>
     </header>
     
     <!-- بخش هدف -->
-    <section class="content-section goal-section">
+    <section class="content-section goal-section" id="about" style="opacity: 1; transform: translateY(0px); transition: opacity 0.5s, transform 0.5s;">
         <h2>هدف ما</h2>
         <p>ایجاد تحولی اساسی در کیفیت زندگی اعضای تیم از طریق معامله‌گری حرفه‌ای</p>
         
@@ -704,8 +1031,59 @@
         </div>
     </section>
     
+    <!-- بخش جدید: دستاوردهای ما -->
+    <section class="content-section success-section" style="opacity: 1; transform: translateY(0px); transition: opacity 0.5s, transform 0.5s;">
+        <h2><i class="fas fa-trophy"></i> دستاوردهای ما</h2>
+        
+        <div class="success-slider">
+            <div class="slide">
+                <div class="success-card">
+                    <div class="success-badge">موفقیت نمونه 1</div>
+                    <div class="success-chart">
+                        <canvas id="chart1" width="375" height="187" style="display: block; box-sizing: border-box; height: 150px; width: 300px;"></canvas>
+                    </div>
+                    <div class="success-details">
+                        <p>رشد 120% سرمایه در 3 ماه</p>
+                        <small>مبتدیان ژانویه 2023</small>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slide">
+                <div class="success-card">
+                    <div class="success-badge">موفقیت نمونه 2</div>
+                    <div class="success-chart">
+                        <canvas id="chart2" width="375" height="187" style="display: block; box-sizing: border-box; height: 150px; width: 300px;"></canvas>
+                    </div>
+                    <div class="success-details">
+                        <p>85% معاملات سودده در یک ماه</p>
+                        <small>اعضای حرفه‌ای مارس 2023</small>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slide">
+                <div class="success-card">
+                    <div class="success-badge">موفقیت نمونه 3</div>
+                    <div class="success-chart">
+                        <canvas id="chart3" width="250" height="250" style="display: block; box-sizing: border-box; height: 200px; width: 200px;"></canvas>
+                    </div>
+                    <div class="success-details">
+                        <p>کاهش 60% ضررهای معاملاتی</p>
+                        <small>اعضای جدید 2023</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="slider-controls">
+            <button class="slider-prev"><i class="fas fa-chevron-right"></i></button>
+            <button class="slider-next"><i class="fas fa-chevron-left"></i></button>
+        </div>
+    </section>
+    
     <!-- بخش جدید: آموزش معامله‌گری -->
-    <section class="content-section">
+    <section class="content-section" id="education" style="opacity: 1; transform: translateY(0px); transition: opacity 0.5s, transform 0.5s;">
         <h2><i class="fas fa-graduation-cap"></i> آموزش معامله‌گری</h2>
         
         <div class="edu-card">
@@ -738,31 +1116,122 @@
     </section>
     
     <!-- بخش مدیریت تیم -->
-    <section class="team-section">
+    <section class="team-section" id="team" style="opacity: 1; transform: translateY(0px); transition: opacity 0.5s, transform 0.5s;">
         <h2>اعضای اصلی تیم</h2>
         
         <div class="team-members">
             <div class="member-card">
                 <i class="fas fa-user-tie member-icon"></i>
                 <div class="member-name">Taha Ghasemi</div>
+                <div class="member-skill">
+                    <span class="skill-tag">تحلیل تکنیکال</span>
+                    <span class="skill-tag">مدیریت ریسک</span>
+                </div>
             </div>
             <div class="member-card">
                 <i class="fas fa-chart-line member-icon"></i>
                 <div class="member-name">Kiarash GoliPour</div>
+                <div class="member-skill">
+                    <span class="skill-tag">تحلیل فاندامنتال</span>
+                    <span class="skill-tag">استراتژی‌سازی</span>
+                </div>
             </div>
             <div class="member-card">
                 <i class="fas fa-lightbulb member-icon"></i>
                 <div class="member-name">Kian Sattari</div>
+                <div class="member-skill">
+                    <span class="skill-tag">روانشناسی بازار</span>
+                    <span class="skill-tag">معامله الگوریتمی</span>
+                </div>
             </div>
             <div class="member-card">
                 <i class="fas fa-cogs member-icon"></i>
                 <div class="member-name">Mehrad Yonsian</div>
+                <div class="member-skill">
+                    <span class="skill-tag">توسعه سیستم‌ها</span>
+                    <span class="skill-tag">بهینه‌سازی</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- بخش جدید: سطوح عضویت -->
+    <section class="content-section" style="opacity: 1; transform: translateY(0px); transition: opacity 0.5s, transform 0.5s;">
+        <h2><i class="fas fa-medal"></i> سطوح عضویت</h2>
+        
+        <div class="membership-plans">
+            <div class="membership-card">
+                <h3 class="membership-title">مبتدی</h3>
+                <div class="membership-price">رایگان</div>
+                <div class="membership-features">
+                    <div class="membership-feature">
+                        <i class="fas fa-check"></i>
+                        <span>سیگنال‌های روزانه</span>
+                    </div>
+                    <div class="membership-feature">
+                        <i class="fas fa-check"></i>
+                        <span>دسترسی به تحلیل‌های هفتگی</span>
+                    </div>
+                    <div class="membership-feature">
+                        <i class="fas fa-check"></i>
+                        <span>پشتیبانی عمومی</span>
+                    </div>
+                </div>
+                <button class="btn">انتخاب این پلن</button>
+            </div>
+            
+            <div class="membership-card popular">
+                <h3 class="membership-title">حرفه‌ای</h3>
+                <div class="membership-price">50,000 تومان <small>/ماه</small></div>
+                <div class="membership-features">
+                    <div class="membership-feature">
+                        <i class="fas fa-check"></i>
+                        <span>تمام امکانات پلن مبتدی</span>
+                    </div>
+                    <div class="membership-feature">
+                        <i class="fas fa-check"></i>
+                        <span>سیگنال‌های لحظه‌ای</span>
+                    </div>
+                    <div class="membership-feature">
+                        <i class="fas fa-check"></i>
+                        <span>تحلیل‌های روزانه</span>
+                    </div>
+                    <div class="membership-feature">
+                        <i class="fas fa-check"></i>
+                        <span>پشتیبانی اختصاصی</span>
+                    </div>
+                </div>
+                <button class="btn">انتخاب این پلن</button>
+            </div>
+            
+            <div class="membership-card">
+                <h3 class="membership-title">VIP</h3>
+                <div class="membership-price">100,000 تومان <small>/ماه</small></div>
+                <div class="membership-features">
+                    <div class="membership-feature">
+                        <i class="fas fa-check"></i>
+                        <span>تمام امکانات پلن حرفه‌ای</span>
+                    </div>
+                    <div class="membership-feature">
+                        <i class="fas fa-check"></i>
+                        <span>مشاوره شخصی هفتگی</span>
+                    </div>
+                    <div class="membership-feature">
+                        <i class="fas fa-check"></i>
+                        <span>استراتژی‌های اختصاصی</span>
+                    </div>
+                    <div class="membership-feature">
+                        <i class="fas fa-check"></i>
+                        <span>پشتیبانی 24 ساعته</span>
+                    </div>
+                </div>
+                <button class="btn">انتخاب این پلن</button>
             </div>
         </div>
     </section>
     
     <!-- بخش جدید: بازار فارکس -->
-    <section class="content-section">
+    <section class="content-section" id="markets" style="opacity: 0; transform: translateY(20px); transition: opacity 0.5s, transform 0.5s;">
         <h2><i class="fas fa-globe"></i> بازار فارکس (FOREX)</h2>
         
         <div class="edu-card">
@@ -770,7 +1239,7 @@
             <p>بازار تبادل ارزهای خارجی (Foreign Exchange) بزرگترین بازار مالی جهان است که روزانه بیش از 6 تریلیون دلار حجم معاملات دارد و به صورت 24 ساعته از دوشنبه تا جمعه فعال است.</p>
             
             <table class="market-table">
-                <tr>
+                <tbody><tr>
                     <th>ویژگی</th>
                     <th>توضیحات</th>
                 </tr>
@@ -790,7 +1259,7 @@
                     <td>اهرم معاملاتی</td>
                     <td>معمولاً تا 1:1000 (بسته به بروکر)</td>
                 </tr>
-            </table>
+            </tbody></table>
         </div>
         
         <div class="market-cards">
@@ -812,21 +1281,8 @@
         </div>
     </section>
     
-    <!-- بخش معرفی تیم -->
-    <section class="content-section intro-section">
-        <h2>تیم فمیلی RS چیست؟</h2>
-        <p>ما جمعی از معامله‌گران حرفه‌ای و مشتاق هستیم که باور داریم معامله‌گری می‌تواند زندگی‌ها را متحول کند. تیم ما با هدف ایجاد فرصت‌های مالی بی‌نظیر تشکیل شده است.</p>
-        
-        <p>در Family RS، معامله‌گری فقط یک مهارت نیست، بلکه راهی برای طراحی زندگی ایده‌آل است. ما با ترکیب دانش تخصصی و کار گروهی، به اعضای خود کمک می‌کنیم به استقلال مالی برسند.</p>
-        
-        <a href="https://t.me/familyrs_support" class="join-btn">
-            <i class="fab fa-telegram"></i>
-            همین حالا به خانواده ما بپیوندید
-        </a>
-    </section>
-    
     <!-- بخش جدید: ارزهای دیجیتال -->
-    <section class="content-section">
+    <section class="content-section" style="opacity: 0; transform: translateY(20px); transition: opacity 0.5s, transform 0.5s;">
         <h2><i class="fab fa-bitcoin"></i> ارزهای دیجیتال (Cryptocurrency)</h2>
         
         <div class="edu-card">
@@ -834,7 +1290,7 @@
             <p>ارزهای دیجیتال دارایی‌های دیجیتالی هستند که از فناوری رمزنگاری و بلاکچین استفاده می‌کنند و به صورت غیرمتمرکز عمل می‌کنند. این بازار به صورت 24/7 فعال است و نوسانات زیادی دارد.</p>
             
             <table class="market-table">
-                <tr>
+                <tbody><tr>
                     <th>ارز دیجیتال</th>
                     <th>کاربرد اصلی</th>
                 </tr>
@@ -854,7 +1310,7 @@
                     <td>ریپل (XRP)</td>
                     <td>انتقالات بین‌المللی ارزی</td>
                 </tr>
-            </table>
+            </tbody></table>
         </div>
         
         <div class="market-cards">
@@ -876,8 +1332,69 @@
         </div>
     </section>
     
+    <!-- بخش جدید: بلاگ آموزشی -->
+    <section class="content-section" style="opacity: 0; transform: translateY(20px); transition: opacity 0.5s, transform 0.5s;">
+        <h2><i class="fas fa-newspaper"></i> بلاگ آموزشی</h2>
+        
+        <div class="blog-posts">
+            <div class="blog-card">
+                <div class="blog-image" style="background-image: url('https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=80');"></div>
+                <div class="blog-content">
+                    <h3 class="blog-title">تحلیل هفتگی بازار فارکس</h3>
+                    <p class="blog-excerpt">بررسی روندهای جاری در بازار فارکس و پیش‌بینی حرکات قیمتی جفت ارزهای اصلی در هفته آینده</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar"></i> 15 تیر 1402</span>
+                        <span><i class="far fa-eye"></i> 245 بازدید</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="blog-card">
+                <div class="blog-image" style="background-image: url('https://images.unsplash.com/photo-1621761191319-c6fb62004040?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=80');"></div>
+                <div class="blog-content">
+                    <h3 class="blog-title">مدیریت ریسک در معاملات</h3>
+                    <p class="blog-excerpt">چگونه با مدیریت صحیح ریسک، از سرمایه خود در برابر نوسانات شدید بازار محافظت کنید</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar"></i> 8 تیر 1402</span>
+                        <span><i class="far fa-eye"></i> 189 بازدید</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="blog-card">
+                <div class="blog-image" style="background-image: url('https://images.unsplash.com/photo-1639762681057-408e52192e55?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=80');"></div>
+                <div class="blog-content">
+                    <h3 class="blog-title">تحلیل بیت‌کوین و آلت‌کوین‌ها</h3>
+                    <p class="blog-excerpt">بررسی آخرین تحولات بازار کریپتو و شناسایی فرصت‌های معاملاتی در آلت‌کوین‌ها</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar"></i> 1 تیر 1402</span>
+                        <span><i class="far fa-eye"></i> 312 بازدید</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <button class="btn" style="margin: 2rem auto; display: block;">
+            <i class="fas fa-book-open"></i>
+            مشاهده همه مقالات
+        </button>
+    </section>
+    
+    <!-- بخش معرفی تیم -->
+    <section class="content-section intro-section" style="opacity: 0; transform: translateY(20px); transition: opacity 0.5s, transform 0.5s;">
+        <h2>تیم فمیلی RS چیست؟</h2>
+        <p>ما جمعی از معامله‌گران حرفه‌ای و مشتاق هستیم که باور داریم معامله‌گری می‌تواند زندگی‌ها را متحول کند. تیم ما با هدف ایجاد فرصت‌های مالی بی‌نظیر تشکیل شده است.</p>
+        
+        <p>در Family RS، معامله‌گری فقط یک مهارت نیست، بلکه راهی برای طراحی زندگی ایده‌آل است. ما با ترکیب دانش تخصصی و کار گروهی، به اعضای خود کمک می‌کنیم به استقلال مالی برسند.</p>
+        
+        <a href="https://t.me/familyrs_support" class="join-btn">
+            <i class="fab fa-telegram"></i>
+            همین حالا به خانواده ما بپیوندید
+        </a>
+    </section>
+    
     <!-- بخش سوالات متداول -->
-    <section class="content-section faq-section">
+    <section class="content-section faq-section" id="faq" style="opacity: 0; transform: translateY(20px); transition: opacity 0.5s, transform 0.5s;">
         <h2>سوالات متداول</h2>
         
         <div class="faq-item">
@@ -900,10 +1417,17 @@
                 <p>بله، آموزش‌های ما از سطح مقدماتی تا پیشرفته طراحی شده‌اند و برای تمام سطوح تجربه مناسب هستند.</p>
             </div>
         </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">چگونه می‌توانم پیشرفت خود را پیگیری کنم؟</div>
+            <div class="faq-answer">
+                <p>پس از عضویت، به داشبورد شخصی دسترسی خواهید داشت که در آن می‌توانید عملکرد معاملاتی، پیشرفت آموزشی و سایر آمارهای شخصی خود را مشاهده کنید.</p>
+            </div>
+        </div>
     </section>
     
     <!-- بخش کانال تلگرام -->
-    <section class="telegram-section">
+    <section class="telegram-section" style="opacity: 0; transform: translateY(20px); transition: opacity 0.5s, transform 0.5s;">
         <h2 style="color: white;">کانال آموزشی ما در تلگرام</h2>
         <p>برای دریافت آخرین تحلیل‌ها، سیگنال‌های معاملاتی و آموزش‌های تخصصی به کانال ما بپیوندید</p>
         <a href="https://t.me/tradetahaghasemi" class="telegram-link">
@@ -913,7 +1437,7 @@
     </section>
     
     <!-- بخش تماس با ما -->
-    <section class="content-section contact-section">
+    <section class="content-section contact-section" id="contact" style="opacity: 0; transform: translateY(20px); transition: opacity 0.5s, transform 0.5s;">
         <h2>تماس با ما</h2>
         <p>برای هرگونه سوال یا پیشنهاد می‌توانید از طریق فرم زیر با ما در ارتباط باشید:</p>
         
@@ -922,12 +1446,12 @@
             
             <div class="form-group">
                 <label for="name">نام شما</label>
-                <input type="text" id="name" placeholder="نام و نام خانوادگی" required>
+                <input type="text" id="name" placeholder="نام و نام خانوادگی" required="">
             </div>
             
             <div class="form-group">
                 <label for="contact">اطلاعات تماس</label>
-                <input type="text" id="contact" placeholder="ایمیل یا شماره تماس" required>
+                <input type="text" id="contact" placeholder="ایمیل یا شماره تماس" required="">
             </div>
             
             <div class="form-group">
@@ -956,6 +1480,9 @@
             <a href="https://twitter.com" class="social-link" target="_blank">
                 <i class="fab fa-twitter"></i>
             </a>
+            <a href="https://linkedin.com" class="social-link" target="_blank">
+                <i class="fab fa-linkedin"></i>
+            </a>
         </div>
         
         <div class="copyright">
@@ -970,12 +1497,140 @@
     </a>
     
     <!-- دکمه بازگشت به بالا -->
-    <div class="back-to-top">
+    <div class="back-to-top active">
         <i class="fas fa-arrow-up"></i>
     </div>
     
     <script>
-        // افزودن تعامل برای سوالات متداول
+        // منوی موبایل
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+        
+        // اسلایدر موفقیت‌ها
+        const slider = document.querySelector('.success-slider');
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.querySelector('.slider-prev');
+        const nextBtn = document.querySelector('.slider-next');
+        let currentIndex = 0;
+        
+        function updateSlider() {
+            slider.scrollTo({
+                left: slides[currentIndex].offsetLeft,
+                behavior: 'smooth'
+            });
+        }
+        
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % slides.length;
+            updateSlider();
+        });
+        
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+            updateSlider();
+        });
+        
+        // نمودارهای موفقیت
+        if(typeof Chart !== 'undefined') {
+            // نمودار 1
+            new Chart(document.getElementById('chart1'), {
+                type: 'line',
+                data: {
+                    labels: ['ماه 1', 'ماه 2', 'ماه 3'],
+                    datasets: [{
+                        label: 'رشد سرمایه',
+                        data: [100, 150, 220],
+                        borderColor: '#6E48AA',
+                        backgroundColor: 'rgba(110, 72, 170, 0.1)',
+                        tension: 0.1,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+            
+            // نمودار 2
+            new Chart(document.getElementById('chart2'), {
+                type: 'bar',
+                data: {
+                    labels: ['معاملات سودده', 'معاملات زیانده'],
+                    datasets: [{
+                        label: 'تعداد معاملات',
+                        data: [85, 15],
+                        backgroundColor: [
+                            'rgba(76, 175, 80, 0.7)',
+                            'rgba(244, 67, 54, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgba(76, 175, 80, 1)',
+                            'rgba(244, 67, 54, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100
+                        }
+                    }
+                }
+            });
+            
+            // نمودار 3
+            new Chart(document.getElementById('chart3'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['ضررهای قبل', 'ضررهای بعد'],
+                    datasets: [{
+                        label: 'کاهش ضررها',
+                        data: [100, 40],
+                        backgroundColor: [
+                            'rgba(244, 67, 54, 0.7)',
+                            'rgba(93, 156, 236, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgba(244, 67, 54, 1)',
+                            'rgba(93, 156, 236, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+        }
+        
+        // سوالات متداول
         document.querySelectorAll('.faq-question').forEach(question => {
             question.addEventListener('click', () => {
                 const item = question.parentElement;
@@ -1006,6 +1661,11 @@
                 document.querySelector(this.getAttribute('href')).scrollIntoView({
                     behavior: 'smooth'
                 });
+                
+                // بستن منوی موبایل در صورت باز بودن
+                if(navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                }
             });
         });
         
@@ -1079,5 +1739,6 @@
         
         window.addEventListener('scroll', animateOnScroll);
     </script>
+
 </body>
 </html>
